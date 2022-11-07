@@ -1,9 +1,32 @@
 <script setup>
+import useCityStore from '@/stores/modules/city';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { formatMonthDay, getDiffDays } from '@/utils/format_date'
 import useDateStore from '@/stores/modules/date'
 import { computed } from '@vue/reactivity';
+
+const router = useRouter()
+
+// 城市位置处理
+const cityClick = () => {
+  router.push("/city")
+}
+const positionClick = () => {
+  navigator.geolocation.getCurrentPosition(res => {
+    console.log("获取当前位置:", res.coords)
+
+  }, err => {
+    console.log("获取位置失败：", err)
+  }, {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  })
+}
+const cityStore = useCityStore()
+const { currentCity } = storeToRefs(cityStore)
 
 
 // 日期相关处理
@@ -27,22 +50,24 @@ const onConfirm = (value) => {
   showCalendar.value = false
 }
 
-
 </script>
 
 <template>
   <div class="search-box">
     <!-- 位置信息 -->
     <div class="location bottom-gray-line">
-      <div class="city">南京</div>
-      <div class="position">
+      <div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
+      <div class="position" @click="positionClick">
         <span class="text">我的位置</span>
         <img src="@/assets/img/home/icon_location.png" alt="" />
       </div>
     </div>
 
     <!-- 日期范围 -->
-    <div class="section date-range" @click="showCalendar = true">
+    <div
+      class="section date-range bottom-gray-line"
+      @click="showCalendar = true"
+    >
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
@@ -67,6 +92,13 @@ const onConfirm = (value) => {
     />
 
     <!-- 价格人数 -->
+    <div class="section price-counter bottom-gray-line">
+      <div class="start">价格不限</div>
+      <div class="end">人数不限</div>
+    </div>
+
+    <!-- 关键字 -->
+    <div class="section bottom-gray-line">关键字/位置/民宿名</div>
   </div>
 </template>
 
@@ -151,6 +183,12 @@ const onConfirm = (value) => {
       text-align: center;
       font-size: 12px;
       color: #666;
+    }
+  }
+
+  .price-counter {
+    .start {
+      border-right: 1px solid var(--line-color);
     }
   }
 }

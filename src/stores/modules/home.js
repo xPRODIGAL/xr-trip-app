@@ -16,6 +16,7 @@ const useHomeStore = defineStore("home", {
     },
     async fetchCategoriesData() {
       const res = await getHomeCategories()
+      console.log(res.data)
       this.categories = res.data
     },
     async fetchHouselistData() {

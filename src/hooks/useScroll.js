@@ -7,7 +7,7 @@ export default function useScroll(reachBottomCB) {
     const clientHeight = document.documentElement.clientHeight
     const scrollTop = document.documentElement.scrollTop
     const scrollHeight = document.documentElement.scrollHeight
-    console.log("-------")
+    // console.log("-------")
     if (clientHeight + scrollTop >= scrollHeight) {
       console.log("滚动到底部了")
       if (reachBottomCB) reachBottomCB()

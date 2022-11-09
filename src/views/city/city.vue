@@ -1,6 +1,10 @@
 <template>
   <div class="city">
-    <div>city</div>
+    <template v-for="item in 100">
+      <div>
+        hahah 
+      </div>
+    </template>
   </div>
 </template>
 

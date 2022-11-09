@@ -10,6 +10,9 @@
   </div>
 </template>
 
+<script>
+  export default { name: "home" }
+</script>
 <script setup>
 import useHomeStore from '@/stores/modules/home';
 import HomeNavBar from './cpns/home-nav-bar.vue';

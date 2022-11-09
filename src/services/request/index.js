@@ -2,7 +2,7 @@ import axios from 'axios'
 import { BASE_URL, TIMEOUT } from './config'
 
 
-class XrRequest {
+class XRRequest {
   constructor(baseURL, timeout = 10000) {
     this.instance = axios.create({
       baseURL,
@@ -31,4 +31,4 @@ class XrRequest {
   }
 }
 
-export default new XrRequest(BASE_URL, TIMEOUT)
+export default new XRRequest(BASE_URL, TIMEOUT)

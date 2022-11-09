@@ -9,8 +9,13 @@
 </template>
 
 <script setup>
+import useHomeStore from '@/stores/modules/home';
 import HomeNavBar from './cpns/home-nav-bar.vue';
 import HomeSearchBox from './cpns/home-search-box.vue'
+
+// 发送请求
+const homeStore = useHomeStore()
+homeStore.fetchHotSuggestData()
 
 </script>
 
@@ -19,7 +24,6 @@ import HomeSearchBox from './cpns/home-search-box.vue'
   height: 100vh;
   overflow-y: auto;
   box-sizing: border-box;
-
 
   .banner {
     img {

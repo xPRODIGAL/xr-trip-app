@@ -52,7 +52,7 @@ const isShowSearchBar = computed(() => {
 
 <style lang="less" scoped>
 .home {
-  // height: 100vh;
+  height: 100vh;
   overflow-y: auto;
   box-sizing: border-box;
   padding-bottom: 60px;

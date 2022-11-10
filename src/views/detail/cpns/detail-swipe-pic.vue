@@ -1,0 +1,34 @@
+<template>
+  <div class="swipe">
+    <van-swipe class="swipe-list" :autoplay="3000" lazy-render>
+      <template v-for="(item, index) in swipeData">
+        <van-swipe-item class="item">
+          <img :src="item.url" />
+        </van-swipe-item>
+      </template>
+    </van-swipe>
+  </div>
+</template>
+
+<script setup>
+
+const props = defineProps({
+  swipeData: {
+    type: Array,
+    default: () => []
+  }
+})
+
+</script>
+
+<style lang="less" scoped>
+.swipe {
+  .swipe-list {
+    .item {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+</style>

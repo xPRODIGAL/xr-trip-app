@@ -12,12 +12,17 @@
       <detail-swipe-pic
         :swipe-data="mainPart.topModule.housePicture.housePics"
       />
+      <detail-infos :top-infos="mainPart.topModule"/>
+      <detail-facility :house-facility="mainPart.dynamicModule.facilityModule.houseFacility" />
     </div>
   </div>
 </template>
 
 <script setup>
 import DetailSwipePic from './cpns/detail-swipe-pic.vue'
+import DetailInfos from './cpns/detail-infos.vue'
+import DetailFacility from './cpns/detail-facility.vue'
+
 import { useRoute, useRouter } from 'vue-router';
 import { ref, computed } from 'vue';
 import { getDetailInfos } from '@/services'
@@ -35,7 +40,6 @@ const detailInfos = ref({})
 const mainPart = computed(() => detailInfos.value.mainPart)
 getDetailInfos(houseId).then(res => {
   detailInfos.value = res.data
-  console.log(res.data)
 })
 
 </script>

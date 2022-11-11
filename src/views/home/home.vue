@@ -23,7 +23,7 @@ import HomeNavBar from './cpns/home-nav-bar.vue';
 import HomeSearchBox from './cpns/home-search-box.vue'
 import HomeCategories from './cpns/home-categories.vue'
 import HomeContent from './cpns/home-content.vue'
-import { ref, watch } from 'vue';
+import { onActivated, ref, watch } from 'vue';
 import useScroll from '@/hooks/useScroll';
 import { computed } from '@vue/reactivity';
 
@@ -48,6 +48,14 @@ watch(isReachBottom, (newValue) => {
 const isShowSearchBar = computed(() => {
   return scrollTop.value > 360
 })
+
+// 返回页面保留原来位置
+onActivated(() => {
+  homeRef.value?.scrollTo({
+    top: scrollTop.value
+  })
+})
+
 </script>
 
 <style lang="less" scoped>

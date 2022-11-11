@@ -22,7 +22,7 @@ export default function useScroll(elRef) {
       scrollHeight.value = el.scrollHeight
     }
     if (clientHeight.value + scrollTop.value >= scrollHeight.value) {
-      console.log("滚动到底部了")
+      // console.log("滚动到底部了")
       isReachBottom.value = true
     }
   }, 100)

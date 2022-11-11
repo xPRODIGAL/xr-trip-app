@@ -1,6 +1,11 @@
 <template>
   <div class="detail top-page" ref="detailRef">
-    <tab-control class="tabs" :titles="names" ref="tabControlRef" v-if="showTabControl" />
+    <tab-control
+      class="tabs"
+      :titles="names"
+      ref="tabControlRef"
+      v-if="showTabControl"
+    />
     <van-nav-bar
       title="民宿详情"
       left-text="旅途"
@@ -38,6 +43,12 @@
         :ref="getSectionRef"
         :order-rules="mainPart.dynamicModule.rulesModule.orderRules"
       />
+      <detail-map
+        name="周边"
+        :ref="getSectionRef"
+        :position="mainPart.dynamicModule.positionModule"
+      />
+      <detail-intro :price-intro="mainPart.introductionModule" />
     </div>
 
     <div class="footer">
@@ -55,6 +66,8 @@ import DetailFacility from './cpns/detail-facility.vue'
 import DetailLandlord from './cpns/detail-landlord.vue'
 import DetailComment from './cpns/detail-comment.vue'
 import DetailNotice from './cpns/detail-notice.vue'
+import DetailMap from './cpns/detail-map.vue'
+import DetailIntro from './cpns/detail-intro.vue'
 
 import { useRoute, useRouter } from 'vue-router';
 import { ref, computed } from 'vue';

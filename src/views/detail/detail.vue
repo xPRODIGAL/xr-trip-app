@@ -127,6 +127,29 @@ const tabClick = (index) => {
   })
 }
 
+// 页面滚动names对应匹配
+const tabControlRef = ref()
+watch(scrollTop, (newValue) => {
+  if (newValue === currentDistance) {
+    isClick = false
+  }
+  if (isClick) return
+
+  // 获取对应区域的offsetTop
+  const els = Object.values(sectionEls.value)
+  const values = els.map(el => el.offsetTop)
+
+  // 根据newValue匹配index
+  let index = values.length - 1
+  for (let i = 0; i < values.length; i++) {
+    if (values[i] > newValue + 40) {
+      index = i - 1
+      break
+    }
+  }
+  tabControlRef.value?.setCurrentIndex(index)
+})
+
 </script>
 
 <style lang="less" scoped>

@@ -5,6 +5,7 @@
       :titles="names"
       ref="tabControlRef"
       v-if="showTabControl"
+      @tabItemClick="tabClick"
     />
     <van-nav-bar
       title="民宿详情"
@@ -70,7 +71,7 @@ import DetailMap from './cpns/detail-map.vue'
 import DetailIntro from './cpns/detail-intro.vue'
 
 import { useRoute, useRouter } from 'vue-router';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { getDetailInfos } from '@/services'
 import useScroll from "@/hooks/useScroll"
 
@@ -107,6 +108,24 @@ const showTabControl = computed(() => {
   return scrollTop.value >= 300
 })
 
+// tabControl点击显式
+let isClick = false
+let currentDistance = -1
+const tabClick = (index) => {
+  const key = Object.keys(sectionEls.value)[index]
+  const el = sectionEls.value[key]
+  let distance = el.offsetTop
+  if (index !== 0) {
+    distance = distance - 40
+  }
+
+  currentDistance = distance
+
+  detailRef.value.scrollTo({
+    top: distance,
+    behavior: "smooth"
+  })
+}
 
 </script>
 

@@ -119,6 +119,7 @@ const tabClick = (index) => {
     distance = distance - 40
   }
 
+  isClick = true
   currentDistance = distance
 
   detailRef.value.scrollTo({
